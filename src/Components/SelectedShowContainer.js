@@ -8,7 +8,6 @@ class SelectedShowContainer extends Component {
   }
 
   mapSeasons = () => {
-    console.log(this.state.selectedSeason)
     if (!!this.props.allEpisodes){
       let seasons = this.props.allEpisodes.map((e)=> e.season).unique()
 
@@ -22,16 +21,16 @@ class SelectedShowContainer extends Component {
     this.props.allEpisodes.filter(episode => episode.season === this.state.selectedSeason)
   }
 
+  filteredEpisodes = () => {
+    return this.props.allEpisodes.filter(episode => episode.season === this.state.selectedSeason)
+  }
+
   mapEpisodes = () => {
-    return this.props.allEpisodes.map((e)=>{
-      if (e.season == this.state.selectedSeason){
-        return (<Episode eachEpisode={e} key={e.id}/>)
-      }
-    })
+     return this.filteredEpisodes().map((e)=><Episode eachEpisode={e} key={e.id}/>)
   }
 
   handleSelectionChange = (e) => {
-    this.setState({ selectedSeason: e.target.value })
+    this.setState({ selectedSeason: parseInt(e.target.value,10) })
   }
 
 
