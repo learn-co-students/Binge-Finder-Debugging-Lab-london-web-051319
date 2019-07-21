@@ -19,7 +19,7 @@ class App extends Component {
   componentDidMount = () => {
     Adapter.getShows().then(shows => this.setState({shows}))
   }
-
+  
   componentDidUpdate = () => {
     window.scrollTo(0, 0)
   }
