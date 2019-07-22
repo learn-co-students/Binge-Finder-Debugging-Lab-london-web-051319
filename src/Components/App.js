@@ -5,8 +5,6 @@ import Nav from './Nav';
 import SelectedShowContainer from './SelectedShowContainer';
 import { Grid } from 'semantic-ui-react';
 
-
-
 class App extends Component {
   state = {
     shows: [],
@@ -24,15 +22,17 @@ class App extends Component {
     window.scrollTo(0, 0)
   }
 
-  handleSearch (e){
+  handleSearch = e => {
     this.setState({ searchTerm: e.target.value.toLowerCase() })
   }
 
-  handleFilter = (e) => {
-    e.target.value === "No Filter" ? this.setState({ filterRating:"" }) : this.setState({ filterRating: e.target.value})
+  handleFilter = e => {
+    e.target.value === "No Filter"
+    ? this.setState({ filterByRating:"" })
+    : this.setState({ filterByRating: e.target.value})
   }
 
-  selectShow = (show) => {
+  selectShow = show => {
     Adapter.getShowEpisodes(show.id)
     .then((episodes) => this.setState({
       selectedShow: show,
